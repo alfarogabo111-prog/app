@@ -1,0 +1,39 @@
+name: Compilar APK Android
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar código
+        uses: actions/checkout@v3
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Instalar Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Instalar React Native y Expo CLI
+        run: |
+          npm install
+          npx expo prebuild --platform android
+
+      - name: Generar APK de Android
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleRelease
+
+      - name: Guardar APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: ServimaxiPOS-APK
+          path: android/app/build/outputs/apk/release/app-release.apk
