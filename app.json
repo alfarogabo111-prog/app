@@ -1,0 +1,9 @@
+{
+  "expo": {
+    "name": "Servimaxi POS",
+    "slug": "servimaxi-pos",
+    "android": {
+      "package": "com.servimaxi.pos"
+    }
+  }
+}
