@@ -1,0 +1,16 @@
+workflows:
+  android-apk:
+    name: Compilar APK Android
+    instance_type: mac_mini_m1
+    environment:
+      node: latest
+    scripts:
+      - name: Instalar dependencias
+        script: |
+          npm install
+          npm install -g eas-cli
+      - name: Compilar APK con Expo EAS
+        script: |
+          eas build -p android --profile preview --non-interactive
+    artifacts:
+      - build/app/outputs/apk/**/*.apk
