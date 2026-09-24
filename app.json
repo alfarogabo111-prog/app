@@ -2,6 +2,9 @@
   "expo": {
     "name": "Servimaxi POS",
     "slug": "servimaxi-pos",
+    "splash": {
+      "backgroundColor": "#ffffff"
+    },
     "android": {
       "package": "com.servimaxi.pos"
     }
